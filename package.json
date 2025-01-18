@@ -1,0 +1,21 @@
+{
+  "name": "electron-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite"
+  },
+  "keywords": [],
+  "author": "carl chen",
+  "license": "MIT",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "electron": "^34.0.0",
+    "esbuild": "^0.24.2",
+    "vite": "^6.0.7",
+    "vite-plugin-pages": "^0.32.4",
+    "vitest": "^3.0.2",
+    "vue": "^3.5.13"
+  }
+}
