@@ -1,12 +1,17 @@
 import { ViteDevServer } from "vite";
 import { compileMainConfig } from "./config";
 
-export const devPlugin = () => {
+export const devPlugin = ({ nodeEnv = "dev" } = {}) => {
   return {
     name: "electron-dev-plugin",
     async configureServer(server: ViteDevServer) {
       const esbuild = await import("esbuild");
-      esbuild.buildSync(compileMainConfig);
+      esbuild.buildSync({
+        ...compileMainConfig,
+        define: {
+          __ENV__: `"${nodeEnv}"`,
+        },
+      });
 
       server.httpServer?.once("listening", async () => {
         const { spawn } = await import("child_process");
@@ -19,7 +24,6 @@ export const devPlugin = () => {
 
           const httpAddress = `http://${address}:${addressInfo?.port || 80}`;
 
-          console.log(httpAddress);
           const electronProcess = spawn(
             (await import("electron")).default.toString(),
             ["./dist/main.js", httpAddress],
