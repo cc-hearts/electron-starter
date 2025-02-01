@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import Pages from "vite-plugin-pages";
 import vuePlugin from "@vitejs/plugin-vue";
-import { devPlugin } from "./scripts/dev";
 
 export default defineConfig((args) => {
   const IS_DEV = args.mode === "development";
@@ -19,7 +18,6 @@ export default defineConfig((args) => {
         extensions: ["vue"],
       }),
       vuePlugin(),
-      devPlugin({ nodeEnv: String(args.mode) }),
     ],
   };
 });
